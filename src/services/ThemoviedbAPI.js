@@ -1,0 +1,60 @@
+    const API_LINK = `https://api.themoviedb.org/3`;
+    const API_KEY = `19011014b9b53c4fd496d37c25f2b619`;
+
+
+export function ThemoviedbAPI(typeQuery, searchQuery) {
+    
+
+    // console.log(typeQuery);
+    // console.log(searchQuery);
+    
+    return fetch(`${API_LINK}${typeQuery}?api_key=${API_KEY}&query=${searchQuery}`)
+
+    .then(response => {
+    
+        if (response.ok) {
+            // console.log(response);
+            return response.json();
+        }
+        return Promise.reject(
+            new Error(`Нажаль нічого не знайдено`)
+        )
+    })
+
+}
+
+export function ThemoviedbApiMovieId( id, typeQuery) {
+    
+    console.log(id);
+    console.log(`${API_LINK}/movie/${id}${typeQuery}?api_key=${API_KEY}`);
+    
+    return fetch(`${API_LINK}/movie/${id}?api_key=${API_KEY}`)
+
+    .then(response => {
+    
+        if (response.ok) {
+            console.log(response);
+            return response.json();
+        }
+        return Promise.reject(
+            new Error(`Нажаль нічого не знайдено`)
+        )
+    })
+
+}
+
+
+export function getMovieDetails(movieId) {
+    const sss = `${API_LINK}/movie/${movieId}?api_key=${API_KEY}`
+    console.log(sss);
+
+  return fetch(`${API_LINK}/movie/${movieId}?api_key=${API_KEY}`)
+      .then(res => {
+          console.log(res);
+          res.json()
+
+      });
+        
+};
+
+// export default ThemoviedbAPI;
