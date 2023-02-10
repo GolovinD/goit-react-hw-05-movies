@@ -1,4 +1,4 @@
-import { useState, useEffect, useSearchParams } from 'react';
+import { useState, useEffect } from 'react';
 
 import SearchForm from "../../components/SearchForm/SearchForm"
 import MovieList from "../../components/MovieList/MovieList"
