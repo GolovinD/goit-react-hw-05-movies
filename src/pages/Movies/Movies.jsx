@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSearchParams } from 'react';
 
 import SearchForm from "../../components/SearchForm/SearchForm"
 import MovieList from "../../components/MovieList/MovieList"
@@ -10,6 +10,9 @@ function Movies() {
 
     const [movieList, setMovieList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+
+    // const [searchParam, setSearchParam] = useSearchParams();
+
     // const [movieId, setMovieId] = useState('');
 
     
@@ -25,7 +28,7 @@ function Movies() {
                 setMovieList(results);
            });
         }  
-    }, [searchQuery]);
+    }, [searchQuery]); 
     
     function handleFormSubmit (searchQuery) {
         console.log(searchQuery);
@@ -44,6 +47,7 @@ function Movies() {
                 <MovieList
                     movieList={movieList}
                 />}
+            
         </section>
   );
 };

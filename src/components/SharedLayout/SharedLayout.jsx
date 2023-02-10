@@ -4,7 +4,7 @@ import css from "./SharedLayout.module.css"
 
 const headerItems = [
     { to: "/", title: "Home" },
-    { to: "/movies", title: "Movies" },
+    { to: "movies", title: "Movies" },
 ];
 
 function SharedLayout() {

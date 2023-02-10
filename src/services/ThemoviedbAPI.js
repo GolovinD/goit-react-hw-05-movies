@@ -4,7 +4,6 @@
 
 export function ThemoviedbAPI(typeQuery, searchQuery) {
     
-
     // console.log(typeQuery);
     // console.log(searchQuery);
     
@@ -20,16 +19,12 @@ export function ThemoviedbAPI(typeQuery, searchQuery) {
             new Error(`Нажаль нічого не знайдено`)
         )
     })
-
 }
 
 export function ThemoviedbApiMovieId( id, typeQuery) {
+    // console.log(id);
     
-    console.log(id);
-    console.log(`${API_LINK}/movie/${id}${typeQuery}?api_key=${API_KEY}`);
-    
-    return fetch(`${API_LINK}/movie/${id}?api_key=${API_KEY}`)
-
+    return fetch(`${API_LINK}/movie/${id}${typeQuery}?api_key=${API_KEY}`)
     .then(response => {
     
         if (response.ok) {
@@ -40,21 +35,6 @@ export function ThemoviedbApiMovieId( id, typeQuery) {
             new Error(`Нажаль нічого не знайдено`)
         )
     })
-
 }
-
-
-export function getMovieDetails(movieId) {
-    const sss = `${API_LINK}/movie/${movieId}?api_key=${API_KEY}`
-    console.log(sss);
-
-  return fetch(`${API_LINK}/movie/${movieId}?api_key=${API_KEY}`)
-      .then(res => {
-          console.log(res);
-          res.json()
-
-      });
-        
-};
 
 // export default ThemoviedbAPI;

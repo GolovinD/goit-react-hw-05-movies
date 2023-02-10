@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'; 
-import { useParams } from "react-router-dom";
 
 function MovieList ({ movieList }) {
     
@@ -13,7 +12,8 @@ function MovieList ({ movieList }) {
                       <Link
                           
                             to={`/movies/${id}`}
-                            state={{ from: location }}>
+                          state={{ from: location }}
+                      >
                                     {title || name}
                             
                         </Link>

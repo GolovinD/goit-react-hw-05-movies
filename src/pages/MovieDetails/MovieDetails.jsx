@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink, useLocation, Outlet, } from "react-router-dom";
 
 
 import { ThemoviedbApiMovieId } from "../../services/ThemoviedbAPI";
 import css from "./MovieDetails.module.css"
-
-
-const typeQuery = '/movie/';
 
 function  MovieDetails() {
 
@@ -15,16 +12,18 @@ function  MovieDetails() {
     // const [movieQuery, setMovieQuery] = useState(null);
     const { movieId } = useParams();
 
+    const location = useLocation();
+    
+
     // setMovieQuery(movieId);
 
-    console.log(typeQuery);
     console.log(movieId);
    
      useEffect(() => {
         ThemoviedbApiMovieId(movieId)
             .then(data => {
                 setMovieDetails(data);
-                console.log(movieDetails);
+                // console.log(movieDetails);
         });
     }, [movieId]); 
 
@@ -45,7 +44,7 @@ function  MovieDetails() {
     };
     
 
-
+    const backLinkHref = location.state?.from ?? '/';
     return (
      
     <section className={css.section}>
@@ -68,14 +67,20 @@ function  MovieDetails() {
             <p>Addination information</p>
             <ul className={css.movieDetails__nav}>
               <li>
-                {/* <NavLink to="cast" className={css.navLink} state={{from: backLinkHref}}>Cast</NavLink> */}
+                        <NavLink
+                            to="cast"
+                            className={css.navLink}
+                            state={{ from: backLinkHref }}
+                        >Cast</NavLink>
               </li>
               <li>
-                {/* <NavLink to="reviews" className={css.navLink} state={{from: backLinkHref}}>Reviews</NavLink> */}
+                        <NavLink to="reviews" className={css.navLink}
+                            // state={{ from: backLinkHref }}
+                        >Reviews</NavLink>
               </li>
             </ul>
         </div>
-
+    <Outlet/>
     </section>
   );    
     
