@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
 
 import SearchForm from "../../components/SearchForm/SearchForm"
 import MovieList from "../../components/MovieList/MovieList"
@@ -10,14 +11,12 @@ function Movies() {
 
     const [movieList, setMovieList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams('');
 
-    // const [searchParam, setSearchParam] = useSearchParams();
-
-    // const [movieId, setMovieId] = useState('');
-
-    
-    
     useEffect(() => {
+        setSearchQuery(searchParams.get("query"));
+        // console.log(searchQuery);
+        if (searchQuery === "") return;
 
         if (searchQuery) {
 
@@ -27,14 +26,18 @@ function Movies() {
                 console.log(results);
                 setMovieList(results);
            });
-        }  
-    }, [searchQuery]); 
+        } 
+    }, [searchQuery, searchParams]); 
     
     function handleFormSubmit (searchQuery) {
-        console.log(searchQuery);
-        setSearchQuery(searchQuery);
-        setMovieList([]);
-    };    
+        // console.log(searchQuery);
+        // setSearchQuery(searchQuery);
+        // setMovieList([]);
+        
+        const query = 'query';
+        setSearchParams({ query: searchQuery });
+        console.log(searchParams.query);
+    }; 
     
     const showMoviesList = movieList.length > 0 && searchQuery;
 
@@ -45,6 +48,7 @@ function Movies() {
             ></SearchForm>
             {showMoviesList &&
                 <MovieList
+
                     movieList={movieList}
                 />}
             
@@ -53,66 +57,3 @@ function Movies() {
 };
 
 export default Movies;
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// // import { useState } from 'react';
-// import PropTypes from 'prop-types';
-
-// import css from './Searchbar.module.css'
-
-// const Searchbar = ({ onSubmit }) => {
-
-//    const [searchQuery, setSearchQuery]  = useState('')
-      
-//     function handleChange (event) {
-//         // console.log(event.currentTarget.value);
-//         setSearchQuery(event.currentTarget.value);
-//     }
-    
-//     function handleSubmit (event) {
-//         event.preventDefault();
-//         // console.log(this.state);
-//         const searchQueryNorm = searchQuery.toLowerCase();
-//         // console.log(searchQueryNorm);
-//         if (searchQueryNorm.trim() === '') {
-//             alert('Введіть запит');
-//             return;  
-//         }
-//         onSubmit(searchQueryNorm)
-//         setSearchQuery('');
-//     }
-    
-//         return (
-//             <div>
-//                <header className={css.searchbar}>
-//                     <form
-//                     className={css.form}
-//                     onSubmit={handleSubmit}>
-//                         <input
-//                         className={css.input}
-//                         type="text"
-//                         value={searchQuery}  
-//                         onChange={handleChange}    
-//                         autocomplete="off"
-//                         placeholder="Search images and photos"
-//                         autofocus
-//                         />
-//                     </form>
-//                 </header>
-//             </div>
-//         )  
-// }
-
-// export default Searchbar;
-
-// Searchbar.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-// }    

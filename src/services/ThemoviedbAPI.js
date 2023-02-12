@@ -1,5 +1,6 @@
-    const API_LINK = `https://api.themoviedb.org/3`;
-    const API_KEY = `19011014b9b53c4fd496d37c25f2b619`;
+const API_LINK = `https://api.themoviedb.org/3`;
+const API_KEY = `19011014b9b53c4fd496d37c25f2b619`;
+
 
 
 export function ThemoviedbAPI(typeQuery, searchQuery) {
@@ -37,4 +38,3 @@ export function ThemoviedbApiMovieId( id, typeQuery) {
     })
 }
 
-// export default ThemoviedbAPI;

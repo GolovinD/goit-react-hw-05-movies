@@ -8,8 +8,6 @@ const typeQuery = '/reviews';
 
 function Reviews() {
 
-    console.log('render reviews!!');
-
     const [reviewsData, setReviewsData] = useState(null);
     const { movieId } = useParams();
 
@@ -24,10 +22,14 @@ function Reviews() {
     if (!reviewsData) {
         return;
     };
-
+    
+    // console.log(reviewsData);
     const reviews = reviewsData.results
-    // console.log(cast);
 
+    if (reviews.length === 0) {
+        return <p>We don't have revievs for this movie</p>;
+    };
+    
 return (
     <ul className={css.reviewsList}>
         {reviews.map(({ id, author, content }) => {

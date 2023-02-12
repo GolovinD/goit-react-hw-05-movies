@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useParams, NavLink, useLocation, Outlet, } from "react-router-dom";
 
-
+import ButtonBack from '../../components/Buttons/ButtonBack'
 import { ThemoviedbApiMovieId } from "../../services/ThemoviedbAPI";
 import css from "./MovieDetails.module.css"
 
 function  MovieDetails() {
-
 
     const [movieDetails, setMovieDetails] = useState(null);
     // const [movieQuery, setMovieQuery] = useState(null);
     const { movieId } = useParams();
 
     const location = useLocation();
-    
-
-    // setMovieQuery(movieId);
 
     console.log(movieId);
    
@@ -26,8 +22,6 @@ function  MovieDetails() {
                 // console.log(movieDetails);
         });
     }, [movieId]); 
-
-    
 
     console.log(movieDetails);
 
@@ -49,7 +43,7 @@ function  MovieDetails() {
      
     <section className={css.section}>
             
-        {/* <ButtonBack /> */}
+        <ButtonBack />
         
         <div className={css.movieDetails}>
             <img className={css.movieDetails__img} src={poster} alt={title || name} width="240" height="320"/>
@@ -83,8 +77,6 @@ function  MovieDetails() {
     <Outlet/>
     </section>
   );    
-    
-
 }
 
 export default MovieDetails;

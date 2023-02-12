@@ -1,19 +1,13 @@
-
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-
 
 import { ThemoviedbApiMovieId } from "../../services/ThemoviedbAPI";
 import css from "./Cast.module.css"
 
-// const location = useLocation();
-
 const typeQuery = '/credits';
 
 function Cast() {
-
-    console.log('render Cast!!');
-
+    // console.log('render Cast!!');
     const [movieDetails, setMovieDetails] = useState(null);
     const { movieId } = useParams();
 
@@ -27,14 +21,12 @@ function Cast() {
             });
     }, [movieId]); 
 
-
     if (!movieDetails) {
         return;
     };
-
-    console.log(movieDetails);
+    // console.log(movieDetails);
     const cast = movieDetails.cast
-    console.log(cast);
+    // console.log(cast);
 
 return (
     <>
