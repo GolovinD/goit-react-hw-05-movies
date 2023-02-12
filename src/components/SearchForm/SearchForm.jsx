@@ -36,6 +36,7 @@ function handleChange (event) {
                 placeholder="Search movie"
                 // autofocus
                 />
+                <button type="submit">Search</button>
             </form>
         </div>
     )  
