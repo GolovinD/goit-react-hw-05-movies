@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import MovieList from "../../components/MovieList/MovieList"
-
-import { ThemoviedbAPI } from "../../services/ThemoviedbAPI"
-
-// import { getTrendingMovies } from '../../api/api-tmdb';
-const trendings = '/trending/all/day';
+import { ThemoviedbAPI, trendings } from "../../services/ThemoviedbAPI"
 
 function Home() {
 

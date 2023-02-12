@@ -3,9 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 import SearchForm from "../../components/SearchForm/SearchForm"
 import MovieList from "../../components/MovieList/MovieList"
-import { ThemoviedbAPI } from "../../services/ThemoviedbAPI"
-
-const typeQuery = '/search/movie';
+import { ThemoviedbAPI, typeQueryMovie } from "../../services/ThemoviedbAPI"
 
 function Movies() {
 
@@ -20,10 +18,10 @@ function Movies() {
 
         if (searchQuery) {
 
-            ThemoviedbAPI(typeQuery, searchQuery)
+            ThemoviedbAPI(typeQueryMovie, searchQuery)
             .then(data => {
                 const { results } = data;
-                console.log(results);
+                // console.log(results);
                 setMovieList(results);
            });
         } 
@@ -34,9 +32,7 @@ function Movies() {
         // setSearchQuery(searchQuery);
         // setMovieList([]);
         
-        const query = 'query';
         setSearchParams({ query: searchQuery });
-        console.log(searchParams.query);
     }; 
     
     const showMoviesList = movieList.length > 0 && searchQuery;
@@ -48,10 +44,8 @@ function Movies() {
             ></SearchForm>
             {showMoviesList &&
                 <MovieList
-
                     movieList={movieList}
                 />}
-            
         </section>
   );
 };

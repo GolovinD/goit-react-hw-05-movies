@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
-import { ThemoviedbApiMovieId } from "../../services/ThemoviedbAPI";
+import { ThemoviedbApiMovieId, typeQueryReviews } from "../../services/ThemoviedbAPI";
 import css from "./Reviews.module.css"
-
-const typeQuery = '/reviews';
 
 function Reviews() {
 
@@ -12,7 +10,7 @@ function Reviews() {
     const { movieId } = useParams();
 
     useEffect(() => {
-        ThemoviedbApiMovieId(movieId, typeQuery)
+        ThemoviedbApiMovieId(movieId, typeQueryReviews)
             .then(data => {
                 setReviewsData(data);
                 // console.log(movieDetails);

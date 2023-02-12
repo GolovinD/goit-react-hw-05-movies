@@ -7,23 +7,17 @@ function MovieList ({ movieList }) {
     return (
                
         <ul>
-              {movieList.map(({ id, title, name }) => (
-                  <li key={id}>
-                      <Link
-                          
-                            to={`/movies/${id}`}
-                          state={{ from: location }}
-                      >
-                                    {title || name}
-                            
-                        </Link>
-                  </li>
+            {movieList.map(({ id, title, name }) => (
+                <li key={id}>
+                    <Link     
+                        to={`/movies/${id}`}
+                        state={{ from: location }}
+                    >{title || name}   
+                    </Link>
+                </li>
             ))}  
         </ul>  
     )
 }
 
 export default MovieList;
-
-
-

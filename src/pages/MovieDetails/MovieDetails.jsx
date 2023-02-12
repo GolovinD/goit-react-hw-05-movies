@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams, NavLink, useLocation, Outlet, } from "react-router-dom";
+import { useState, useEffect, Suspense } from 'react';
+import { useParams, NavLink, useLocation, Outlet } from "react-router-dom";
 
 import ButtonBack from '../../components/Buttons/ButtonBack'
 import { ThemoviedbApiMovieId } from "../../services/ThemoviedbAPI";
@@ -8,12 +8,9 @@ import css from "./MovieDetails.module.css"
 function  MovieDetails() {
 
     const [movieDetails, setMovieDetails] = useState(null);
-    // const [movieQuery, setMovieQuery] = useState(null);
     const { movieId } = useParams();
-
     const location = useLocation();
-
-    console.log(movieId);
+    // console.log(movieId);
    
      useEffect(() => {
         ThemoviedbApiMovieId(movieId)
@@ -22,8 +19,6 @@ function  MovieDetails() {
                 // console.log(movieDetails);
         });
     }, [movieId]); 
-
-    console.log(movieDetails);
 
       if (!movieDetails) {
     return;
@@ -36,11 +31,10 @@ function  MovieDetails() {
     if (!poster_path) {
     poster = 'https://img.freepik.com/free-vector/coming-soon-display-background-with-focus-light_1017-33741.jpg';
     };
-    
 
     const backLinkHref = location.state?.from ?? '/';
     return (
-     
+    <>
     <section className={css.section}>
             
         <ButtonBack />
@@ -60,22 +54,26 @@ function  MovieDetails() {
         <div className={css.movieDetails__info}>
             <p>Addination information</p>
             <ul className={css.movieDetails__nav}>
-              <li>
-                        <NavLink
-                            to="cast"
-                            className={css.navLink}
-                            state={{ from: backLinkHref }}
-                        >Cast</NavLink>
-              </li>
-              <li>
-                        <NavLink to="reviews" className={css.navLink}
-                            // state={{ from: backLinkHref }}
-                        >Reviews</NavLink>
-              </li>
+                <li>
+                    <NavLink
+                        to="cast"
+                        className={css.navLink}
+                        state={{ from: backLinkHref }}
+                    >Cast</NavLink>
+                </li>
+                <li>
+                    <NavLink to="reviews" className={css.navLink}
+                    >Reviews</NavLink>
+                </li>
             </ul>
         </div>
-    <Outlet/>
     </section>
+    <Suspense fallback={<div>Loading...</div>}>
+        <section>
+            <Outlet/>
+        </section>
+    </Suspense>    
+    </>  
   );    
 }
 

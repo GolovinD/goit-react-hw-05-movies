@@ -1,4 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
+import { Suspense } from "react";
 
 import css from "./SharedLayout.module.css"
 
@@ -9,36 +10,31 @@ const headerItems = [
 
 function SharedLayout() {
     return (
-    <>   
-    <header>
-        <nav>
-            <ul>
-                {headerItems.map((headerItem) => (
-                <li
-                    key={headerItem.title}
-                    >
-                        <NavLink
-                        className={({ isActiv }) => (isActiv ? css.nav_activ: null)}
-                        to={headerItem.to}
-                        >{headerItem.title}
-                    </NavLink> 
-                </li>
-                ))}
-            </ul>
-            
-
+        <>   
+        <header>
+            <nav>
+                <ul>
+                    {headerItems.map((headerItem) => (
+                    <li
+                        key={headerItem.title}
+                        >
+                            <NavLink
+                            className={({ isActiv }) => (isActiv ? css.nav_activ: null)}
+                            to={headerItem.to}
+                            >{headerItem.title}
+                        </NavLink> 
+                    </li>
+                    ))}
+                </ul>
             </nav>
         </header>  
-    <Outlet />   
-    </>     
+        <Suspense fallback={<div>Loading...</div>}>
+            <main className={css.main}>
+                <Outlet />
+            </main>
+        </Suspense>   
+        </>     
     )
 }
 
 export default SharedLayout;
-
-//  <header className={css.header}>
-//       <nav>
-//         <NavLink to="/" className={css.navLink}>Home</NavLink>
-//         <NavLink to="/movies" className={css.navLink}>Movies</NavLink>
-//       </nav>
-//     </header>
