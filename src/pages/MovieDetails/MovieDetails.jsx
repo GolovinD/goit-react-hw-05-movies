@@ -33,6 +33,7 @@ function  MovieDetails() {
     };
 
     const backLinkHref = location.state?.from ?? '/';
+
     return (
     <>
     <section className={css.section}>
@@ -62,7 +63,9 @@ function  MovieDetails() {
                     >Cast</NavLink>
                 </li>
                 <li>
-                    <NavLink to="reviews" className={css.navLink}
+                    <NavLink to="reviews"
+                        className={css.navLink}
+                        state={{ from: backLinkHref }}
                     >Reviews</NavLink>
                 </li>
             </ul>

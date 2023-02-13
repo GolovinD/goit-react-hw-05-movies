@@ -28,7 +28,11 @@ function Cast() {
     const cast = movieDetails.cast
     // console.log(cast);
 
-return (
+  if (cast.length === 0) {
+    return <p>We don't have revievs for this movie</p>;
+  };
+  
+  return (
     <>
       <ul className={css.castList}>
         {cast.map(item => {
