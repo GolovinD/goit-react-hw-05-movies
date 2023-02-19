@@ -13,7 +13,6 @@ function Movies() {
 
     useEffect(() => {
         setSearchQuery(searchParams.get("query"));
-        // console.log(searchQuery);
         if (searchQuery === "") return;
 
         if (searchQuery) {
@@ -21,17 +20,12 @@ function Movies() {
             ThemoviedbAPI(typeQueryMovie, searchQuery)
             .then(data => {
                 const { results } = data;
-                // console.log(results);
                 setMovieList(results);
            });
         } 
     }, [searchQuery, searchParams]); 
     
     function handleFormSubmit (searchQuery) {
-        // console.log(searchQuery);
-        // setSearchQuery(searchQuery);
-        // setMovieList([]);
-        
         setSearchParams({ query: searchQuery });
     }; 
     
