@@ -7,7 +7,6 @@ function SearchForm({ onSubmit }) {
 const [searchQuery, setSearchQuery] = useState([]);
 
 function handleChange (event) {
-//      console.log(event.currentTarget.value);
         setSearchQuery(event.currentTarget.value);
     }    
 
@@ -32,9 +31,9 @@ function handleChange (event) {
                 type="text"
                 value={searchQuery}  
                 onChange={handleChange}    
-                // autocomplete="off"
+                autocomplete="off"
                 placeholder="Search movie"
-                // autofocus
+                autofocus
                 />
                 <button type="submit">Search</button>
             </form>

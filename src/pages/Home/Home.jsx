@@ -11,7 +11,6 @@ function Home() {
     ThemoviedbAPI(trendings)
         .then(data => {
             const { results } = data;
-            // console.log(results);
         setMovieList(results);
       });
   }, []);

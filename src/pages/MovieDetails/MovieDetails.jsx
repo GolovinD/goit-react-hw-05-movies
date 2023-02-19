@@ -10,13 +10,11 @@ function  MovieDetails() {
     const [movieDetails, setMovieDetails] = useState(null);
     const { movieId } = useParams();
     const location = useLocation();
-    // console.log(movieId);
    
      useEffect(() => {
         ThemoviedbApiMovieId(movieId)
             .then(data => {
                 setMovieDetails(data);
-                // console.log(movieDetails);
         });
     }, [movieId]); 
 
@@ -26,11 +24,13 @@ function  MovieDetails() {
     
     const { name, title, release_date, overview, genres, poster_path, vote_average } = movieDetails;
     const releaseYaer = new Date(release_date);
-    let poster = `https://image.tmdb.org/t/p/w500${poster_path}`;
+    const poster = poster_path
+        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+        : 'https://img.freepik.com/free-vector/coming-soon-display-background-with-focus-light_1017-33741.jpg';
 
-    if (!poster_path) {
-    poster = 'https://img.freepik.com/free-vector/coming-soon-display-background-with-focus-light_1017-33741.jpg';
-    };
+    // if (!poster_path) {
+    // poster = 'https://img.freepik.com/free-vector/coming-soon-display-background-with-focus-light_1017-33741.jpg';
+    // };
 
     const backLinkHref = location.state?.from ?? '/';
 

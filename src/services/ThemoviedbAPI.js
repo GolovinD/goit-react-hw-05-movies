@@ -7,15 +7,12 @@ export const typeQueryReviews = '/reviews';
 
 
 export function ThemoviedbAPI(typeQuery, searchQuery) {
-    // console.log(typeQuery);
-    // console.log(searchQuery);
     
     return fetch(`${API_LINK}${typeQuery}?api_key=${API_KEY}&query=${searchQuery}`)
 
     .then(response => {
     
         if (response.ok) {
-            // console.log(response);
             return response.json();
         }
         return Promise.reject(
@@ -24,13 +21,12 @@ export function ThemoviedbAPI(typeQuery, searchQuery) {
     })
 }
 
-export function ThemoviedbApiMovieId( id, typeQuery) {
-    // console.log(id);
+export function ThemoviedbApiMovieId(id, typeQuery) {
+    
     return fetch(`${API_LINK}/movie/${id}${typeQuery}?api_key=${API_KEY}`)
     .then(response => {
     
         if (response.ok) {
-            // console.log(response);
             return response.json();
         }
         return Promise.reject(
@@ -38,4 +34,3 @@ export function ThemoviedbApiMovieId( id, typeQuery) {
         )
     })
 }
-

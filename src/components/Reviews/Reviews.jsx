@@ -13,7 +13,6 @@ function Reviews() {
         ThemoviedbApiMovieId(movieId, typeQueryReviews)
             .then(data => {
                 setReviewsData(data);
-                // console.log(movieDetails);
             });
     }, [movieId]); 
 
@@ -21,7 +20,6 @@ function Reviews() {
         return;
     };
     
-    // console.log(reviewsData);
     const reviews = reviewsData.results
 
     if (reviews.length === 0) {

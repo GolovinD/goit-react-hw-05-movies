@@ -7,26 +7,20 @@ import css from "./Cast.module.css"
 const typeQuery = '/credits';
 
 function Cast() {
-    // console.log('render Cast!!');
     const [movieDetails, setMovieDetails] = useState(null);
     const { movieId } = useParams();
 
     useEffect(() => {
         ThemoviedbApiMovieId(movieId, typeQuery)
             .then(data => {
-                // console.log(typeQuery);
-  
                 setMovieDetails(data);
-                // console.log(movieDetails);
             });
     }, [movieId]); 
 
     if (!movieDetails) {
         return;
     };
-    // console.log(movieDetails);
     const cast = movieDetails.cast
-    // console.log(cast);
 
   if (cast.length === 0) {
     return <p>We don't have revievs for this movie</p>;
